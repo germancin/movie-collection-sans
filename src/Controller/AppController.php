@@ -60,6 +60,27 @@ class AppController extends Controller
         //$this->loadComponent('Security');
         //$this->loadComponent('Csrf');
         
+        $this->loadComponent('Auth', [
+            'authenticate' => [
+                'Form' => [
+                    'fields' => [
+                        'password' => 'password',
+                        'username' => 'email',
+                    ]
+
+                ]
+            ],
+            'loginRedirect' => [
+                'controller' => 'Movies',
+                'action' => 'index'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Pages',
+                'action' => 'display',
+                'home'
+            ]
+        ]);
+        
     }
 
     /**
