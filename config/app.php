@@ -1,4 +1,12 @@
 <?php
+/*Sets the value of an environment variable*/
+if(is_file(ROOT . DS . '.env')) {
+    $vars = json_decode(file_get_contents(ROOT . DS . '.env'), true);
+    foreach ($vars as $name => $val) {
+        putenv("$name=$val");
+    }
+}
+
 return [
     /**
      * Debug Level:
