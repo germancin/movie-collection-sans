@@ -1,5 +1,5 @@
 <div class="movies form col-lg-10 col-md-9 columns topnav">
-        <?= h('Edit Movie') ?> 
+        <a class="active disabled" ><?=__('List Movies')?></a>
         <?= $this->Html->link(__('List Movies') . ' | ', ['action' => 'index']) ?>
         <?= $this->Html->link(__('New Movie') . ' | ', ['action' => 'add']) ?>
         <?= $this->Form->postLink(
