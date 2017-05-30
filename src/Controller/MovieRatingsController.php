@@ -177,6 +177,22 @@ class MovieRatingsController extends AppController
     }
 
     /**
+     * returns the total rate.
+     * @param  array $dataRatings
+     * @return integer
+     */
+    public function __getAvgRating($dataRatings)
+    {
+        $rateVals = [];
+        foreach ($dataRatings['movie_ratings'] as $rating) {
+            $rateVals[] = $rating['value'];
+        }
+        
+        return array_sum($rateVals) / count($rateVals);
+        
+    }
+
+    /**
      * Update the movie table with the total rate of a movie.
      * @param  integer $movieId
      * @param  integer $rateValue // total rate of movie.
@@ -203,4 +219,5 @@ class MovieRatingsController extends AppController
         }
         return false;
     }
+    
 }
