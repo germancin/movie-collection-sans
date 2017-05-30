@@ -79,7 +79,15 @@ class MoviesTable extends Table
         $validator
             ->time('length')
             ->requirePresence('length', 'create')
-            ->notEmpty('length');
+            ->notEmpty('length')
+            ->add("length",
+                        [ "custom" =>
+                            [
+                                "rule" => [$this, "lenghtTimeValidator"],
+                                "message" => "Enter length time less than 500 minutes."
+                            ]
+                        ]
+                );
 
         $validator
             ->integer('release_year')
@@ -92,5 +100,17 @@ class MoviesTable extends Table
             ->notEmpty('rating');
 
         return $validator;
+    }
+
+    /**
+     * Checks if the given time is greater than 0 and less than 500.
+     *
+     * @param $length array()
+     * @return boolean
+     */
+    public function lenghtTimeValidator($length)
+    {
+        $minutes = intval($length['hour'])*60 + intval($length['minute']);
+        return ($minutes > 0 && $minutes < 500) ? true : false;
     }
 }
