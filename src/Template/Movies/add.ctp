@@ -17,7 +17,6 @@
             echo $this->Form->input('title');
             echo $this->Form->input('length');
             echo $this->Form->input('release_year');
-            echo $this->Form->input('rating');
             echo $this->Form->input('formats._ids', ['options' => $formats]);
         ?>
     </fieldset>
