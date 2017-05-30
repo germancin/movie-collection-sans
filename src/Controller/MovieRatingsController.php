@@ -113,4 +113,35 @@ class MovieRatingsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    /**
+     * Rate method
+     * Process the rate of each movie.
+     * 
+     */
+    public function rate()
+    {
+        if ($this->request->is('post')) {
+            $movieRating = $this->MovieRatings->newEntity();
+            $movieId = $this->request->data['movie_id'];
+            $userId = $this->request->data['user_id'];
+            $rateValue = $this->request->data['rate'];
+
+            $data = ['movie_id' => $movieId, 'user_id' => $userId,'value' => $rateValue];
+
+            $movieRating = $this->MovieRatings->patchEntity($movieRating, $data);
+
+            if ($this->MovieRatings->save($movieRating)) {
+                $this->Flash->success(__('Thank you for rating this movie.'));
+            }else{
+                $this->Flash->error(__('Something went wrong saving this rating.'));
+            }
+            
+        }else{
+            $this->Flash->error(__('Please select a value for rating this movie.'));
+        }
+
+        $this->redirect($this->referer());
+
+    }
 }
