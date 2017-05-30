@@ -10,35 +10,21 @@
         <div class="col-lg-5 columns strings">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h6 class="subheader"><?= __('Title') ?></h6>
-                    <p><?= h($movie->title) ?></p>
+                    <h6 class="subheader"><?= __('Id:') ?> <?= $this->Number->format($movie->id) ?></h6>
+                    <h6 class="subheader"><?= __('Title:') ?> <?= h($movie->title) ?></h6>
+                    <h6 class="subheader"><?= __('Length:') ?> <?= date_format($movie->length,'H:i:s'); ?></h6>
                 </div>
             </div>
         </div>
         <div class="col-lg-2 columns numbers end">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h6 class="subheader"><?= __('Id') ?></h6>
-                    <p><?= $this->Number->format($movie->id) ?></p>
-                    <h6 class="subheader"><?= __('Release Year') ?></h6>
-                    <p><?= $this->Number->format($movie->release_year) ?></p>
-                    <h6 class="subheader"><?= __('Rating') ?></h6>
-                    <p><?= $this->Number->format($movie->rating) ?></p>
+                    <h6 class="subheader"><?= __('Release Year:') ?> <?= $movie->release_year ?></h6>
+                    <h6 class="subheader"><?= __('Rating:') ?> <?= $this->Number->format($movie->rating) ?></h6>
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 columns dates end">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h6 class="subheader"><?= __('Length') ?></h6>
-                    <p><?= h($movie->length) ?></p>
-                    <h6 class="subheader"><?= __('Created') ?></h6>
-                    <p><?= h($movie->created) ?></p>
-                    <h6 class="subheader"><?= __('Modified') ?></h6>
-                    <p><?= h($movie->modified) ?></p>
-                </div>
-            </div>
-        </div>
+
     </div>
 </div>
 <div class="related row">
