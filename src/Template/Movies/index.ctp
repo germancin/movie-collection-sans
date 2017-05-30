@@ -19,8 +19,6 @@
                 <th><?= $this->Paginator->sort('length') ?></th>
                 <th><?= $this->Paginator->sort('release_year') ?></th>
                 <th><?= $this->Paginator->sort('rating') ?></th>
-                <th><?= $this->Paginator->sort('created') ?></th>
-                <th><?= $this->Paginator->sort('modified') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -32,8 +30,6 @@
                 <td><?= h($movie->length) ?></td>
                     <td><?= $this->Number->format($movie->release_year) ?></td>
                     <td><?= $this->Number->format($movie->rating) ?></td>
-                <td><?= h($movie->created) ?></td>
-                <td><?= h($movie->modified) ?></td>
                     <td class="actions">
                     <?= $this->Html->link('<span class="glyphicon glyphicon-zoom-in"></span><span class="sr-only">' . __('View') . '</span>', ['action' => 'view', $movie->id], ['escape' => false, 'class' => 'btn btn-xs btn-default', 'title' => __('View')]) ?>
                     <?= $this->Html->link('<span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . __('Edit') . '</span>', ['action' => 'edit', $movie->id], ['escape' => false, 'class' => 'btn btn-xs btn-default', 'title' => __('Edit')]) ?>
