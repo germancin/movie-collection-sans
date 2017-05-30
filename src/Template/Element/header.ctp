@@ -15,7 +15,7 @@
               <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
                 <li><a href="/movies">Movies</a></li>
-                <li><a href="/movie-ratings">Movie Ratings</a></li>
+                <li><a href="/users/login">Login</a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div>
