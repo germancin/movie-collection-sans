@@ -27,9 +27,9 @@
             <tr>
                 <td><?= $this->Number->format($movie->id) ?></td>
                 <td><?= h($movie->title) ?></td>
-                <td><?= h($movie->length) ?></td>
-                    <td><?= $this->Number->format($movie->release_year) ?></td>
-                    <td><?= $this->Number->format($movie->rating) ?></td>
+                <td><?= date_format($movie->length,'H:i:s'); ?></td>
+                    <td><?= $movie->release_year ?></td>
+                    <td><?= $movie->rating ?></td>
                     <td class="actions">
                     <?= $this->Html->link('<span class="glyphicon glyphicon-zoom-in"></span><span class="sr-only">' . __('View') . '</span>', ['action' => 'view', $movie->id], ['escape' => false, 'class' => 'btn btn-xs btn-default', 'title' => __('View')]) ?>
                     <?= $this->Html->link('<span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . __('Edit') . '</span>', ['action' => 'edit', $movie->id], ['escape' => false, 'class' => 'btn btn-xs btn-default', 'title' => __('Edit')]) ?>
