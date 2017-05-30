@@ -229,9 +229,9 @@ return [
              * the following line and set the port accordingly
              */
             //'port' => 'non_standard_port_number',
-            'username' => devenv('DB_USERNAME'),
-            'password' => devenv('DB_PASSWORD'),
-            'database' => devenv('DB_NAME'),
+            'username' => getenv('DB_USERNAME'),
+            'password' => getenv('DB_PASSWORD'),
+            'database' => getenv('DB_NAME'),
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'flags' => [],
