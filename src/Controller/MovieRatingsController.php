@@ -136,12 +136,70 @@ class MovieRatingsController extends AppController
             }else{
                 $this->Flash->error(__('Something went wrong saving this rating.'));
             }
-            
+
+            $this->computeMovieRating($movieId);
+
         }else{
             $this->Flash->error(__('Please select a value for rating this movie.'));
         }
 
         $this->redirect($this->referer());
 
+    }
+
+    /**
+     * Take all rates from movie and do the math.
+     * @param  integer $movieId
+     * @return integer
+     */
+    public function computeMovieRating($movieId)
+    {
+        if(empty($movieId)){
+           return false;
+        }
+
+        $movies = TableRegistry::get('Movies');
+
+        $movieRatings = $movies->get($movieId, [
+            'contain' => ['MovieRatings']
+        ]);
+
+        $dataRatings = $movieRatings->toArray();
+
+        $rateAvg = $this->__getAvgRating($dataRatings);
+
+        if($rateAvg > 0) {
+            $this->updateMovieRating($rateAvg, $movieId);
+        }
+
+        return true;
+    }
+
+    /**
+     * Update the movie table with the total rate of a movie.
+     * @param  integer $movieId
+     * @param  integer $rateValue // total rate of movie.
+     * @return boolean
+     */
+    public function updateMovieRating($rateValue, $movieId)
+    {
+        $movies = TableRegistry::get('Movies');
+
+        if($rateValue > 0){
+            $data = [
+                        'id' => $movieId,
+                        'rating' => intval(round($rateValue))
+                    ];
+
+            $movie = $movies->get($movieId);
+
+            $movieRating = $movies->patchEntity($movie, $data);
+
+            if ($movies->save($movieRating)) {
+                $this->Flash->success(__('The movie rating has been updated.'));
+                return true;
+            }
+        }
+        return false;
     }
 }
