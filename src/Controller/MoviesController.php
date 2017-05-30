@@ -72,7 +72,8 @@ class MoviesController extends AppController
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
-    {
+    {   
+        $date = ''; $length = [];
         $movie = $this->Movies->get($id, [
             'contain' => ['Formats']
         ]);
@@ -85,9 +86,22 @@ class MoviesController extends AppController
             }
             $this->Flash->error(__('The movie could not be saved. Please, try again.'));
         }
+        
+        /* Splitting the length to fill dropwdows*/
+        foreach ($movie['length'] as $key => $field) {
+            if($key === 'date') 
+            {
+                $length = ['hrs' => intval(date_format(date_create($field),'H')),
+                           'min' => intval(date_format(date_create($field),'i')),
+                           'segs' => intval(date_format(date_create($field),'s')),
+                           'movieLenght' => date_format(date_create($field),'H:i:s')
+                          ];
+            }
+        }
+        
         $formats = $this->Movies->Formats->find('list', ['limit' => 200]);
-        $this->set(compact('movie', 'formats'));
-        $this->set('_serialize', ['movie']);
+        $this->set(compact('movie', 'formats', 'length'));
+        $this->set('_serialize', ['movie','length']);
     }
 
     /**

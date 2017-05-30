@@ -1,12 +1,7 @@
-<div class="actions columns col-lg-2 col-md-3">
-    <h3><?= __('Actions') ?></h3>
-    <ul class="nav nav-stacked nav-pills">
-        <li><?= $this->Html->link(__('New Movie'), ['action' => 'add']) ?></li>
-        <li class="active disabled"><?= $this->Html->link(__('List Movies'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Movie Ratings'), ['controller' => 'MovieRatings', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Movie Rating'), ['controller' => 'MovieRatings', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Formats'), ['controller' => 'Formats', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Format'), ['controller' => 'Formats', 'action' => 'add']) ?> </li>
+<div class="movies index col-lg-10 col-md-9 columns topnav">
+    <ul class="nav navbar-nav">
+        <li class="active disabled"><?= $this->Html->link(__('List Movies') . ' | ', ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Movie') . ' | ', ['action' => 'add']) ?></li>
     </ul>
 </div>
 <div class="movies index col-lg-10 col-md-9 columns">

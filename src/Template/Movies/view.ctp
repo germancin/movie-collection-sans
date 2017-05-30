@@ -1,15 +1,8 @@
-<div class="actions columns col-lg-2 col-md-3">
-    <h3><?= __('Actions') ?></h3>
-    <ul class="nav nav-stacked nav-pills">
-        <li><?= $this->Html->link(__('Edit Movie'), ['action' => 'edit', $movie->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Movie'), ['action' => 'delete', $movie->id], ['confirm' => __('Are you sure you want to delete # {0}?', $movie->id), 'class' => 'btn-danger']) ?> </li>
-        <li><?= $this->Html->link(__('List Movies'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Movie'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Movie Ratings'), ['controller' => 'MovieRatings', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Movie Rating'), ['controller' => 'MovieRatings', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Formats'), ['controller' => 'Formats', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Format'), ['controller' => 'Formats', 'action' => 'add']) ?> </li>
-    </ul>
+<div class="movies view col-lg-10 col-md-9 columns topnav">
+        <?= $this->Html->link(__('Edit Movie') . ' | ', ['action' => 'edit', $movie->id]) ?> 
+        <?= $this->Html->link(__('List Movies') . ' | ', ['action' => 'index']) ?>
+        <?= $this->Html->link(__('New Movie') . ' | ', ['action' => 'add']) ?>
+        <?= $this->Form->postLink(__('Delete Movie'), ['action' => 'delete', $movie->id], ['confirm' => __('Are you sure you want to delete # {0}?', $movie->id), 'class' => 'btn btn-danger']) ?> 
 </div>
 <div class="movies view col-lg-10 col-md-9 columns">
     <h2><?= h($movie->title) ?></h2>
