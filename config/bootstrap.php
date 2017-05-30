@@ -220,3 +220,4 @@ Type::build('timestamp')
 Plugin::load('Bootstrap');
 Plugin::load('Less');
 Plugin::load('BootstrapUI');
+Plugin::load('AkkaFacebook', ['bootstrap' => false, 'routes' => true]);
