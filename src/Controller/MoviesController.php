@@ -33,11 +33,12 @@ class MoviesController extends AppController
      */
     public function view($id = null)
     {
+        $rates = [1,2,3,4,5];
         $movie = $this->Movies->get($id, [
             'contain' => ['Formats', 'MovieRatings']
         ]);
 
-        $this->set('movie', $movie);
+        $this->set(compact('movie', 'rates'));
         $this->set('_serialize', ['movie']);
     }
 

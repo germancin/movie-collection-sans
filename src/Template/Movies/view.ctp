@@ -51,6 +51,26 @@
 <div class="related row">
     <div class="column col-lg-12">
     <h4 class="subheader"><?= __('Related MovieRatings') ?></h4>
+
+        <?php echo $this->Form->create(null, ['url' => ['controller' => 'MovieRatings', 'action' => 'rate']]); ?>
+        <div class="table-responsive">
+            <div class="input-group">
+                <?php foreach ($rates as $key => $value) :?>
+                    <span class="input-group-addon">
+                        <input type="radio" name="rate" value="<?=$value?>"> <?=$value?>
+                    </span>
+                <?php endforeach;?>
+                <span class="input-group-addon">
+                    <?php echo $this->Form->button('Rate', ['class'=> 'btn btn-primary rateBtn' ]);?>
+                </span>
+        </div><!-- /input-group -->
+
+        <?php echo $this->Form->hidden('movie_id', ['value' => $this->request->pass[0] ]); ?>
+        <?php
+        //TODO: get user id from Auth variables. So the user can no rate several times.
+        echo $this->Form->hidden('user_id', ['value' => '9' ]); ?>
+    <?php echo $this->Form->end(); ?>
+
     <?php if (!empty($movie->movie_ratings)): ?>
     <div class="table-responsive">
         <table class="table">
