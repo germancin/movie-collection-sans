@@ -66,6 +66,15 @@ class MoviesTable extends Table
         $validator
             ->requirePresence('title', 'create')
             ->notEmpty('title');
+        
+        $validator
+            ->add('title',  ['length' =>
+                                [
+                                    'rule' => ['maxLength', 50],
+                                    'message' => 'Title can\'t exide the 50 characters long.',
+                                ]
+                            ]
+                );
 
         $validator
             ->time('length')
