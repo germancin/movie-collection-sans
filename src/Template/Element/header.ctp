@@ -18,7 +18,7 @@
                 <?php if (!$isLoggin):?>
                 	<li><a href="/users/login">Login</a></li>
                 <?php else: ?>
-                	<li><a href="/users/logout">Logout</a></li>
+                	<li><a href="/users/logout">Logout - Hi, <?=$userAuth['username']?></a></li>
                 <?php endif; ?>
               </ul>
             </div><!--/.nav-collapse -->
