@@ -92,12 +92,15 @@ class MoviesTable extends Table
         $validator
             ->integer('release_year')
             ->requirePresence('release_year', 'create')
-            ->notEmpty('release_year');
-
-        $validator
-            ->integer('rating')
-            ->requirePresence('rating', 'create')
-            ->notEmpty('rating');
+            ->notEmpty('release_year')
+            ->add("release_year",
+                        [ "custom" =>
+                            [
+                                "rule" => [$this, "yearValidator"],
+                                "message" => "Enter value greater than 1800 and less then 2100."
+                            ]
+                        ]
+                );
 
         return $validator;
     }
@@ -105,12 +108,23 @@ class MoviesTable extends Table
     /**
      * Checks if the given time is greater than 0 and less than 500.
      *
-     * @param $length array()
+     * @param  array
      * @return boolean
      */
     public function lenghtTimeValidator($length)
     {
         $minutes = intval($length['hour'])*60 + intval($length['minute']);
         return ($minutes > 0 && $minutes < 500) ? true : false;
+    }
+
+    /**
+     * Checks if the given year is greater than 0 and less than 500.
+     *
+     * @param  integer
+     * @return boolean
+     */
+    public function yearValidator($year)
+    {
+        return ($year > 1800 && $year < 2100) ? true : false;
     }
 }
