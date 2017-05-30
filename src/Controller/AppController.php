@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Routing\Router;
 
 /**
  * Application Controller
@@ -79,6 +80,16 @@ class AppController extends Controller
                 'action' => 'display',
                 'home'
             ]
+        ]);
+        
+        $this->loadComponent('AkkaFacebook.Graph', [
+                'app_id' => '204778506707999',
+                'app_secret' => '5b52992789464d6117abff33dd987657',
+                'default_graph_version' => 'v2.9',
+                'app_scope' => 'email',
+                'redirect_url' => 'https://german-movie-collection.herokuapp.com/users/oauth',
+                'post_login_redirect' => Router::url(['controller' => 'Movies', 'action' => 'index'], TRUE),  
+                'user_columns' => ['first_name' => 'name', 'last_name' => 'lastname'] //not required
         ]);
         
     }

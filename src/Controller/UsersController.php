@@ -137,4 +137,14 @@ class UsersController extends AppController
         return $this->redirect($this->Auth->logout());
         
     }
+    
+    /**
+     * Oauth Facebook callback after Login
+     *
+     */
+    public function oauth()
+    {
+        $this->autoRender = false;
+        return $this->redirect($this->Auth->redirectUrl());
+    }
 }
