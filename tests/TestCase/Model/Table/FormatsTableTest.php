@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\MoviesTable;
+use App\Model\Table\FormatsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\MoviesTable Test Case
+ * App\Model\Table\FormatsTable Test Case
  */
-class MoviesTableTest extends TestCase
+class FormatsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\MoviesTable
+     * @var \App\Model\Table\FormatsTable
      */
-    public $Movies;
+    public $Formats;
 
     /**
      * Fixtures
@@ -24,10 +24,11 @@ class MoviesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
+        'app.formats',
         'app.movies',
         'app.movie_ratings',
         'app.users',
-        'app.formats',
+        'app.user_roles',
         'app.formats_movies'
     ];
 
@@ -39,8 +40,8 @@ class MoviesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Movies') ? [] : ['className' => 'App\Model\Table\MoviesTable'];
-        $this->Movies = TableRegistry::get('Movies', $config);
+        $config = TableRegistry::exists('Formats') ? [] : ['className' => 'App\Model\Table\FormatsTable'];
+        $this->Formats = TableRegistry::get('Formats', $config);
     }
 
     /**
@@ -50,7 +51,7 @@ class MoviesTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Movies);
+        unset($this->Formats);
 
         parent::tearDown();
     }

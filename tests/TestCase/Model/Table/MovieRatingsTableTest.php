@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\MoviesTable;
+use App\Model\Table\MovieRatingsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\MoviesTable Test Case
+ * App\Model\Table\MovieRatingsTable Test Case
  */
-class MoviesTableTest extends TestCase
+class MovieRatingsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\MoviesTable
+     * @var \App\Model\Table\MovieRatingsTable
      */
-    public $Movies;
+    public $MovieRatings;
 
     /**
      * Fixtures
@@ -24,11 +24,11 @@ class MoviesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.movies',
         'app.movie_ratings',
-        'app.users',
+        'app.movies',
         'app.formats',
-        'app.formats_movies'
+        'app.formats_movies',
+        'app.users'
     ];
 
     /**
@@ -39,8 +39,8 @@ class MoviesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Movies') ? [] : ['className' => 'App\Model\Table\MoviesTable'];
-        $this->Movies = TableRegistry::get('Movies', $config);
+        $config = TableRegistry::exists('MovieRatings') ? [] : ['className' => 'App\Model\Table\MovieRatingsTable'];
+        $this->MovieRatings = TableRegistry::get('MovieRatings', $config);
     }
 
     /**
@@ -50,7 +50,7 @@ class MoviesTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Movies);
+        unset($this->MovieRatings);
 
         parent::tearDown();
     }
@@ -71,6 +71,16 @@ class MoviesTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

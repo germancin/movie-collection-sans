@@ -43,11 +43,11 @@ class MoviesFixture extends TestFixture
         [
             'id' => 1,
             'title' => 'Lorem ipsum dolor sit amet',
-            'length' => '16:23:42',
+            'length' => '16:36:40',
             'release_year' => 1,
             'rating' => 1,
-            'created' => '2017-05-30 16:23:42',
-            'modified' => 1496161422
+            'created' => '2017-05-30 16:36:40',
+            'modified' => 1496162200
         ],
     ];
 }
