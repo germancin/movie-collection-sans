@@ -65,9 +65,6 @@ class UsersTable extends Table
             ->requirePresence('username', 'create')
             ->notEmpty('username');
 
-        $validator
-            ->requirePresence('facebookid', 'create')
-            ->notEmpty('facebookid');
 
         $validator
             ->allowEmpty('password');

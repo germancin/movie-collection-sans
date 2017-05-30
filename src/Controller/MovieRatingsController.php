@@ -118,34 +118,67 @@ class MovieRatingsController extends AppController
     /**
      * Rate method
      * Process the rate of each movie.
-     * 
      */
     public function rate()
     {
         if ($this->request->is('post')) {
+            
             $movieRating = $this->MovieRatings->newEntity();
-            $movieId = $this->request->data['movie_id'];
-            $userId = $this->request->data['user_id'];
-            $rateValue = $this->request->data['rate'];
 
-            $data = ['movie_id' => $movieId, 'user_id' => $userId,'value' => $rateValue];
+            if(!empty($this->request->data['rate'])) {
+                $movieId = $this->request->data['movie_id'];
+                $userId = $this->request->data['user_id'];
+                $rateValue = $this->request->data['rate'];
+                
+                if($this->userHaventRatedMovie($userId, $movieId)){
 
-            $movieRating = $this->MovieRatings->patchEntity($movieRating, $data);
+                        $data = ['movie_id' => $movieId, 'user_id' => $userId,'value' => $rateValue];
+        
+                        $movieRating = $this->MovieRatings->patchEntity($movieRating, $data);
+        
+                        if ($this->MovieRatings->save($movieRating)) {
+                            $this->Flash->success(__('Thank you for rating this movie.'));
+                        }else{
+                            $this->Flash->error(__('Something went wrong saving this rating.'));
+                        }
+                
+                }else{
 
-            if ($this->MovieRatings->save($movieRating)) {
-                $this->Flash->success(__('Thank you for rating this movie.'));
+                        if ($this->updateRating($userId, $movieId, $rateValue)) {
+                            $this->Flash->success(__('Thank you for updating this movie rate.'));
+                        }else{
+                            $this->Flash->error(__('Something went wrong updating this rating.'));
+                        }
+                }
+                
+                $this->computeMovieRating($movieId);
+
             }else{
-                $this->Flash->error(__('Something went wrong saving this rating.'));
+                $this->Flash->error(__('Please select a value for rating this movie.'));
             }
 
-            $this->computeMovieRating($movieId);
-
-        }else{
-            $this->Flash->error(__('Please select a value for rating this movie.'));
+            $this->redirect($this->referer());
         }
+    }
 
-        $this->redirect($this->referer());
-
+    /**
+     * If the user already rated then can update its rate from movie.
+     *
+     * @param integer $userId
+     * @param integer $movieIs
+     * @param integer $rateValue // total rate value from movie.
+     * @return object
+     */
+    public function updateRating($userId, $movieId, $rateValue)
+    {
+        
+        $movieRatings = TableRegistry::get("MovieRatings");
+                        $query = $movieRatings->query();
+        
+        return $query->update()->set(['value' => $rateValue])
+                                ->where(['user_id' => $userId, 'movie_id' => $movieId   ])
+                                ->execute();    
+        
     }
 
     /**
@@ -218,6 +251,22 @@ class MovieRatingsController extends AppController
             }
         }
         return false;
+    }
+    
+    /**
+     * Checks if user haven't rated yet. If so returns true.
+     * @param  integer $movieId
+     * @param  integer $userId
+     * @return boolean
+     */
+    public function userHaventRatedMovie ($userId, $movieID)
+    {
+        $movieRating = $this->MovieRatings->find()
+                        ->where(['user_id =' => $userId, 'movie_id =' => $movieID   ])
+                        ->toArray();
+        
+        return (empty($movieRating)) ? true : false;
+        
     }
     
 }

@@ -67,8 +67,8 @@
 
         <?php echo $this->Form->hidden('movie_id', ['value' => $this->request->pass[0] ]); ?>
         <?php
-        //TODO: get user id from Auth variables. So the user can no rate several times.
-        echo $this->Form->hidden('user_id', ['value' => '9' ]); ?>
+            //TODO: get user id from Auth variables. So the user can no rate several times.
+            echo $this->Form->hidden('user_id', ['value' => $userAuth['id'] ]); ?>
     <?php echo $this->Form->end(); ?>
 
     <?php if (!empty($movie->movie_ratings)): ?>

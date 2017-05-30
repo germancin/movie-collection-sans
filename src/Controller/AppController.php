@@ -84,6 +84,14 @@ class AppController extends Controller
     }
 
     public function beforeFilter(Event $event) {
+        $this->set('userAuth', $this->Auth->user());
+        $this->set('isLoggin', true);
+
+        if(!$this->Auth->user()){
+            $this->set('userAuth', []);
+            $this->set('isLoggin', false);
+        }
+
         $this->Auth->allow(['display', 'index']);
     }
 

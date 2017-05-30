@@ -44,7 +44,7 @@ $this->prepend('script', $this->Html->script([
     <?= $this->Html->css(['footer']);?>
     
     <title>
-        German - Movie Collection - <?= $this->fetch('title'); ?>
+        German - Movie Manager - <?= $this->fetch('title'); ?>
     </title>
     <?php
         // Meta

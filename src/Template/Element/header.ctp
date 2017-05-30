@@ -15,7 +15,11 @@
               <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
                 <li><a href="/movies">Movies</a></li>
-                <li><a href="/users/login">Login</a></li>
+                <?php if (!$isLoggin):?>
+                	<li><a href="/users/login">Login</a></li>
+                <?php else: ?>
+                	<li><a href="/users/logout">Logout</a></li>
+                <?php endif; ?>
               </ul>
             </div><!--/.nav-collapse -->
           </div>
